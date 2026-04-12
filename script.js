@@ -805,23 +805,30 @@ class SmartMarker {
 
 // Inicializar o marcador inteligente
 document.addEventListener('DOMContentLoaded', function() {
-    window.smartMarker = new SmartMarker();
-    
-    // Garantir posicionamento correto após carregamento completo
+    // Aguardar um pouco para garantir que todos os elementos estejam prontos
+    setTimeout(() => {
+        if (document.querySelector('.smart-marker') && document.querySelectorAll('.nav-link').length > 0) {
+            window.smartMarker = new SmartMarker();
+            
+            // Forçar atualização inicial após criação
+            setTimeout(() => {
+                if (window.smartMarker) {
+                    window.smartMarker.setActiveByScroll();
+                    window.smartMarker.updateMarker();
+                }
+            }, 200);
+        }
+    }, 100);
+});
+
+// Garantir inicialização correta após refresh completo
+window.addEventListener('load', function() {
     setTimeout(() => {
         if (window.smartMarker) {
             window.smartMarker.setActiveByScroll();
             window.smartMarker.updateMarker();
         }
-    }, 100);
-});
-
-// Garantir inicialização correta após refresh
-window.addEventListener('load', function() {
-    if (window.smartMarker) {
-        window.smartMarker.setActiveByScroll();
-        window.smartMarker.updateMarker();
-    }
+    }, 300);
 });
 
 // Forçar verificação após hash change (navegação por âncora)
@@ -830,15 +837,28 @@ window.addEventListener('hashchange', function() {
         setTimeout(() => {
             window.smartMarker.setActiveByScroll();
             window.smartMarker.updateMarker();
-        }, 50);
+        }, 100);
     }
 });
 
-// Verificação adicional para garantir posicionamento correto
+// Debounce para o evento de scroll para evitar múltiplas chamadas
+let scrollTimeout;
 window.addEventListener('scroll', function() {
-    if (window.smartMarker && !window.smartMarker.isAnimating) {
-        window.smartMarker.setActiveByScroll();
-    }
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+        if (window.smartMarker && !window.smartMarker.isAnimating) {
+            window.smartMarker.setActiveByScroll();
+        }
+    }, 50);
+});
+
+// Verificação adicional após resize
+window.addEventListener('resize', function() {
+    setTimeout(() => {
+        if (window.smartMarker) {
+            window.smartMarker.updateMarker();
+        }
+    }, 150);
 });
 
 // Console message para desenvolvedores

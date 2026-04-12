@@ -11,10 +11,10 @@
     --light-gray: #d9d9d9;
     --white: #ffffff;
     
-    --green-1: #71de00;
-    --green-2: #72e600;
-    --green-3: #76e900;
-    --green-4: #8fff00;
+    --green-1: #4a8f00;
+    --green-2: #5a9f00;
+    --green-3: #6aaf00;
+    --green-4: #7abf00;
     
     --gradient-green: linear-gradient(135deg, var(--green-1), var(--green-4));
     --gradient-dark: linear-gradient(135deg, var(--primary-black), var(--dark-gray));
@@ -80,7 +80,7 @@ body {
 }
 
 .nav-logo h2 {
-    background: linear-gradient(135deg, #000000 0%, #71de00 50%, #000000 100%);
+    background: linear-gradient(135deg, #000000 0%, #4a8f00 50%, #000000 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -104,9 +104,9 @@ body {
 .logo-bubble {
     position: absolute;
     border-radius: 50%;
-    background: linear-gradient(135deg, #71de00, #8fff00);
+    background: linear-gradient(135deg, #4a8f00, #7abf00);
     opacity: 0;
-    box-shadow: 0 0 10px rgba(113, 222, 0, 0.6);
+    box-shadow: 0 0 10px rgba(74, 143, 0, 0.6);
 }
 
 .logo-bubble.bubble-1 {
@@ -933,14 +933,14 @@ body {
 }
 
 .btn-primary {
-    background: var(--gradient-green);
+    background: #4a8f00;
     color: var(--primary-black);
-    box-shadow: 0 10px 30px rgba(113, 222, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(74, 143, 0, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 15px 40px rgba(113, 222, 0, 0.4);
+    box-shadow: 0 15px 40px rgba(74, 143, 0, 0.4);
 }
 
 .btn-secondary {
@@ -2172,23 +2172,19 @@ section .container {
 /* Marca d'água */
 .watermark {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-family: var(--font-primary);
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: rgba(113, 222, 0, 0.15);
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(113, 222, 0, 0.05);
     pointer-events: none;
     z-index: 1;
     user-select: none;
-    transform: rotate(-45deg);
-    transition: var(--transition);
-}
-
-.watermark:hover {
-    color: rgba(113, 222, 0, 0.25);
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+    white-space: nowrap;
+    opacity: 0.8;
 }
 
 /* Loading Animation */
