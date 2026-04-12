@@ -2169,6 +2169,28 @@ section .container {
     transform: translateY(0);
 }
 
+/* Marca d'água */
+.watermark {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(113, 222, 0, 0.15);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    pointer-events: none;
+    z-index: 1;
+    user-select: none;
+    transform: rotate(-45deg);
+    transition: var(--transition);
+}
+
+.watermark:hover {
+    color: rgba(113, 222, 0, 0.25);
+}
+
 /* Loading Animation */
 .loading {
     display: inline-block;
